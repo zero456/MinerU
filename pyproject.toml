@@ -55,6 +55,12 @@ vlm = [
 sglang = [
     "sglang[all]>=0.4.7,<0.4.10",
 ]
+xpu = [
+    "intel-extension-for-pytorch",
+]
+intel = [
+    "mineru[xpu]",
+]
 pipeline = [
     "matplotlib>=3.10,<4",
     "ultralytics>=8.3.48,<9",
@@ -89,6 +95,7 @@ core = [
 all = [
     "mineru[core]",
     "mineru[sglang]",
+    "mineru[xpu]",
 ]
 pipeline_old_linux = [
     "matplotlib>=3.10,<=3.10.1",

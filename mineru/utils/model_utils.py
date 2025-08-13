@@ -9,6 +9,7 @@ from mineru.utils.boxbase import get_minbox_if_overlap_by_ratio
 try:
     import torch
     import torch_npu
+    import intel_extension_for_pytorch
 except ImportError:
     pass
 
@@ -409,6 +410,9 @@ def clean_memory(device='cuda'):
             torch_npu.npu.empty_cache()
     elif str(device).startswith("mps"):
         torch.mps.empty_cache()
+    elif str(device).startswith("xpu"):
+        if torch.xpu.is_available():
+            torch.xpu.empty_cache()
     gc.collect()
 
 
@@ -429,5 +433,8 @@ def get_vram(device):
         if torch_npu.npu.is_available():
             total_memory = torch_npu.npu.get_device_properties(device).total_memory / (1024 ** 3)  # 转为 GB
             return total_memory
+    elif torch.xpu.is_available() and str(device).startswith("xpu"):
+        total_memory = torch.xpu.get_device_properties(device).total_memory / (1024 ** 3)
+        return total_memory
     else:
         return None

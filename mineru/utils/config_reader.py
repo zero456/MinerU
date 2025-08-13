@@ -6,6 +6,7 @@ from loguru import logger
 try:
     import torch
     import torch_npu
+    import intel_extension_for_pytorch
 except ImportError:
     pass
 
@@ -79,6 +80,8 @@ def get_device():
     else:
         if torch.cuda.is_available():
             return "cuda"
+        elif torch.xpu.is_available():
+            return "xpu"
         elif torch.backends.mps.is_available():
             return "mps"
         else:

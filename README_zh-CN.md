@@ -430,7 +430,7 @@ https://github.com/user-attachments/assets/4bea02c9-6d54-4cd6-97ed-dff14340982c
 - OCR支持84种语言的检测与识别
 - 支持多种输出格式，如多模态与NLP的Markdown、按阅读顺序排序的JSON、含有丰富信息的中间格式等
 - 支持多种可视化结果，包括layout可视化、span可视化等，便于高效确认输出效果与质检
-- 支持纯CPU环境运行，并支持 GPU(CUDA)/NPU(CANN)/MPS 加速
+- 支持纯CPU环境运行，并支持 GPU(CUDA)/NPU(CANN)/MPS/intel iGPU 加速
 - 兼容Windows、Linux和Mac平台
 
 # 快速开始
@@ -517,6 +517,7 @@ uv pip install -e .[core] -i https://mirrors.aliyun.com/pypi/simple
 
 > [!TIP]
 > `mineru[core]`包含除`sglang`加速外的所有核心功能，兼容Windows / Linux / macOS系统，适合绝大多数用户。
+> 如果您希望使用Intel iGPU进行加速，可以安装`xpu`额外依赖：`uv pip install -U "mineru[core,xpu]"`
 > 如果您有使用`sglang`加速VLM模型推理，或是在边缘设备安装轻量版client端等需求，可以参考文档[扩展模块安装指南](https://opendatalab.github.io/MinerU/zh/quick_start/extension_modules/)。
 
 ---

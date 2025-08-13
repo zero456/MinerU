@@ -160,7 +160,7 @@ def main(
         def get_virtual_vram_size() -> int:
             if virtual_vram is not None:
                 return virtual_vram
-            if get_device_mode().startswith("cuda") or get_device_mode().startswith("npu"):
+            if get_device_mode().startswith("cuda") or get_device_mode().startswith("npu") or get_device_mode().startswith("xpu"):
                 return round(get_vram(get_device_mode()))
             return 1
         if os.getenv('MINERU_VIRTUAL_VRAM_SIZE', None) is None:
